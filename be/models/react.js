@@ -17,11 +17,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         postId: {
-            type: DataTypes.INTERGER,
+            type: DataTypes.INTEGER,
             allowNull: true
         },
         commentId: {
-            type: DataTypes.INTERGER,
+            type: DataTypes.INTEGER,
             allowNull: true
         }
     },
@@ -33,6 +33,4 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   return React;
-};
-
-module.exports = { React }
+}

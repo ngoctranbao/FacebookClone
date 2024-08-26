@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
+  
   return RoomChat;
 };
-
-module.exports = { RoomChat }

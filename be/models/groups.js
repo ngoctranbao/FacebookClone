@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Group.init(
     {
         groupName: {
-            type: DataTypes.INTERGER,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: TRUE
         },
         ownerId: {
-            type: DataTypes.INTERGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     },
@@ -33,5 +33,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Group;
 };
-
-module.exports = { Group }

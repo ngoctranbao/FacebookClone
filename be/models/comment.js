@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         ownerId: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         parentId: {
@@ -25,14 +25,14 @@ module.exports = (sequelize, DataTypes) => {
               key: 'id',
             },
           },
-          postId: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-              model: 'Post',
-              key: 'id',
-            },
+        postId: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          references: {
+            model: 'Post',
+            key: 'id',
           },
+        },
     },
     {
       sequelize,
@@ -43,5 +43,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Comment;
 };
-
-module.exports = { Comment }

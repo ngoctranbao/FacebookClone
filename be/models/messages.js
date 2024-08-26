@@ -25,5 +25,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Message;
 };
-
-module.exports = { Message }

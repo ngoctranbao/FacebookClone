@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         reactNumber: {
-          type: DataTypes.INTERGER,
+          type: DataTypes.INTEGER,
           allowNull: false
         },
         groupId: {
-          type: DataTypes.INTERGER,
+          type: DataTypes.INTEGER,
           allowNull: true
         },
     },
@@ -36,5 +36,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Post;
 };
-
-module.exports = { Post }
