@@ -12,6 +12,18 @@ let hashUserPassword = (plaintextPassword) => {
     });
 };
 
+const verifyPassword = (plaintextPassword, hashPassword) => {
+    bcrypt.compare(plaintextPassword, hashPassword, (err, result) => {
+        if (err) {
+            console.error('Error comparing passwords:', err);
+            return;
+        }
+    
+        return result
+    })
+}
+
 module.exports = {
   hashUserPassword: hashUserPassword,
+  verifyPassword: verifyPassword
 };

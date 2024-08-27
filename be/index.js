@@ -1,13 +1,19 @@
-const express = require('express')
-const connectMongo = require('./config/configMongo');
-const connectMysql = require('./config/configMysql');
+import {connectMysql} from './config/configMysql.cjs';
 
-const app = express()
+// import pkg from './utils/createServer.js';
+// const { createServer } = pkg;
+import { createServer } from './utils/createServer.js';
+
+
 const port = 8000
-
-connectMongo()
 connectMysql()
+const server = createServer();
 
-app.listen(port, () => {
-  console.log(`Example app listening on ports ${port}`)
-})
+server.listen(port, () => {
+  console.log("listening on port: " + port);
+});
+
+// import express from 'express'
+// import bodyParser from 'body-parser'
+// import cors from 'cors'
+// import { router } from "../routes/index.js";

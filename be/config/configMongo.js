@@ -1,9 +1,16 @@
 const mongoose = require('mongoose');
+require("dotenv").config()
+
+const url = process.env.MONGODB_URL
 
 const connectMongo =  async() => {
-    mongoose.connect('mongodb://127.0.0.1:27017/Facebook')
-    .then(() => console.log('Connect Mongodb success!'));
-}  
+    try {
+        mongoose.connect(url)
+        .then(() => console.log('Connect Mongodb success!'));        
+    } catch (error) {
+        console.log(`Connect Mongodb fail: ${error}`)
+    }
 
+}  
 
 module.exports = connectMongo

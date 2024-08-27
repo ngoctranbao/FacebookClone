@@ -20,5 +20,5 @@ let connectMysql = async () => {
       console.error("Error connecting: " + err);
     }
   };
-  
-  module.exports = connectMysql;
+
+module.exports = { connectMysql }

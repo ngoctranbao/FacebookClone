@@ -31,12 +31,12 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        // get() {
-        //   return this.getDataValue("password");
-        // },
-        // set(value) {
-        //   this.setDataValue("password", hashUserPassword(value));
-        // },
+        get() {
+          return this.getDataValue("password");
+        },
+        set(value) {
+          this.setDataValue("password", hashUserPassword(value));
+        },
       },
       email: {
         type: DataTypes.STRING,
