@@ -1,5 +1,5 @@
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       User.hasMany(models.Post);
@@ -27,20 +27,22 @@ module.exports = (sequelize, DataTypes) => {
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: true
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        get() {
-          return this.getDataValue("password");
-        },
-        set(value) {
-          this.setDataValue("password", hashUserPassword(value));
-        },
+        // get() {
+        //   return this.getDataValue("password");
+        // },
+        // set(value) {
+        //   this.setDataValue("password", hashUserPassword(value));
+        // },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: { isEmail: true },
       },
       gender: {

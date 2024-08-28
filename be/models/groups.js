@@ -1,5 +1,5 @@
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class Group extends Model {
     static associate(models) {
       Group.hasMany(models.Post);
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         private: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: TRUE
+            defaultValue: true
         },
         ownerId: {
             type: DataTypes.INTEGER,

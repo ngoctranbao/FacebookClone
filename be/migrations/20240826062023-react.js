@@ -37,6 +37,16 @@ module.exports = {
         // onUpdate: 'CASCADE',
         // onDelete: 'SET NULL', // Adjust based on your needs
       },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     });
 
     // Optionally, you can create indexes here if you expect frequent queries on specific fields

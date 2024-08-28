@@ -1,7 +1,7 @@
 import { Router } from "express";
 // import { router as smartContract } from "./smartContract";
 // import { router as roomChat } from "./roomChat";
-// import { router as auth } from "./auth";
+import { router as auth } from "./auth.js";
 // import { router as verify } from "./verify";
 // import { router as contract } from "./contract";
 // import { router as realEstate } from "./realEstate";
@@ -22,7 +22,7 @@ router.get('/homepage', (req, res) => {
 
 // router.use("/room-chat", authenticate, roomChat);
 
-// router.use("/auth", auth);
+router.use("/auth", auth);
 
 // router.use("/verify", verify);
 
