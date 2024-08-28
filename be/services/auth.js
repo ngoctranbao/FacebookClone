@@ -1,6 +1,8 @@
 import db from "../models/index.js";
 // import { createVerify } from "./verify";
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
 import { hashUserPassword, verifyPassword } from "../utils/hashPassword.js";
 
 export const signUpUserService = async (data) => {
@@ -14,10 +16,10 @@ export const signUpUserService = async (data) => {
       avatar: data.avatar,
     });
     res = res.get({ plain: true });
-    // if (res) {
-    //   delete res["password"];
-    //   // await createVerify({ type: "1", data: res });
-    // }
+    if (res) {
+      delete res["password"];
+      // await createVerify({ type: "1", data: res });
+    }
     return res;
   } catch (error) {
     console.log(error);
@@ -35,10 +37,13 @@ export const loginUserService = async (data) => {
     let check = await verifyPassword(data.password, user.password)
     delete user["password"];
     if (check) {
-      // let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+      const payload = { userId: user.id };
+      const token = jwt.sign(payload, process.env.JWT_TOKEN);
+      console.log(token)
       return {
         message: "Login successful",
         data: { user: user },
+        token: token
       };
     }
   }

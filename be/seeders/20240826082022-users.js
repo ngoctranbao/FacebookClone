@@ -7,14 +7,14 @@ module.exports = {
         userName: "user1",
         email: "user1@gmail.com",
         isActive: true,
-        password: "password",
+        password: "$10$YF7gRTCS0WxZCZv8VUt2Fu1TVPltQ3ReYM3MQwXoY8IdNV.sUGQ3y",
         avatar: ""
       },
       {
         userName: "user2",
         email: "user2@gmail.com",
         isActive: true,
-        password: "password",
+        password: "$10$YF7gRTCS0WxZCZv8VUt2Fu1TVPltQ3ReYM3MQwXoY8IdNV.sUGQ3y",
         avatar: ""
       },
     ]);

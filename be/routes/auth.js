@@ -2,32 +2,27 @@ import { Router } from "express";
 import {
   handleRegisterUser,
   handleLoginUser,
-  // handleLoginByToken,
+  handleLoginByToken,
   handleLogoutUser,
 } from "../controllers/auth.js";
-// const SchemaValidator = require("nodejs-schema-validator");
-// const schemaValidatorInstance = new SchemaValidator();
-// import { signUpSchema, loginSchema } from "../schema/auth";
-// import { authenticate } from "../middleware/authenticate";
+import { authenticateToken } from "../middlewares/authenticate.js";
 
 export const router = Router();
 
 router.post(
   "/signup",
-  // schemaValidatorInstance.validateBody(signUpSchema),
   handleRegisterUser
 );
 
 router.post(
   "/login",
-  // schemaValidatorInstance.validateBody(loginSchema),
   handleLoginUser
 );
 
-// router.get("/me", 
-//   // authenticate,
-//    handleLoginByToken);
+router.get("/me", 
+  authenticateToken,
+  handleLoginByToken);
 
 router.get("/logout",
-  //  authenticate,
-    handleLogoutUser);
+  authenticateToken,
+  handleLogoutUser);

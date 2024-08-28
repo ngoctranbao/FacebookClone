@@ -1,11 +1,28 @@
 import { AutoComplete, Avatar, Button, Col, Divider, Layout, Row } from "antd";
 import {  UserOutlined } from '@ant-design/icons'
 import SignUpForm from "./signup";
-import React from "react";
+import React, {useState} from "react";
 import "./login.css"
+import { loginService } from "../../services/auth";
 
 
 const LoginForm = () => {
+    const [emailOrPhone, setEmailOrPhone] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleLogin = async () => {
+      try {
+        const response = await loginService({email: emailOrPhone, password: password})
+  
+        if (response.status === 200) {
+          console.log('Login successful:', response.data);
+        } else {
+            console.log('Login failed:', response);
+          }
+      } catch (error) {
+        console.error('Login failed:', error.response.data);
+      }
+    };
 
     
     return(
@@ -27,17 +44,22 @@ const LoginForm = () => {
                 <Col span={8} className="login-form">
                     <AutoComplete
                         placeholder="Email Address or Phone Number"
+                        onChange={(value) => setEmailOrPhone(value)}
+                        value={emailOrPhone}
                         style={{width: "100%", height: "50px"}}
                     />
                     <br/>
                     <AutoComplete
                         placeholder="Password"
+                        value={password}
+                        onChange={(value) => setPassword(value)}
+                        type="password"
                         style={{width: "100%", height: "50px"}}
                      />
                     <br/>
                     <Button
                         style={{width: "100%", height: "50px", backgroundColor: "blue", color: "white"}}
-
+                        onClick={handleLogin}
                     >
                         Log In
                     </Button>
