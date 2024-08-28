@@ -1,6 +1,8 @@
-import bcrypt from "bcryptjs";
+// import pkg from 'bcryptjs';
+// const { hash, compare, genSalt } = pkg;
+import bcrypt from 'bcrypt';
 
-let hashUserPassword = (plaintextPassword) => {
+export const hashUserPassword = async (plaintextPassword) => {
     bcrypt.genSalt(10, (err, salt) => {
         if (err) throw err;
         
@@ -12,18 +14,6 @@ let hashUserPassword = (plaintextPassword) => {
     });
 };
 
-const verifyPassword = (plaintextPassword, hashPassword) => {
-    bcrypt.compare(plaintextPassword, hashPassword, (err, result) => {
-        if (err) {
-            console.error('Error comparing passwords:', err);
-            return;
-        }
-    
-        return result
-    })
+export const verifyPassword = async (plaintextPassword, hashPassword) => {
+    return bcrypt.compare(plaintextPassword, hashPassword);
 }
-
-module.exports = {
-  hashUserPassword: hashUserPassword,
-  verifyPassword: verifyPassword
-};
