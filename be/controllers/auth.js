@@ -4,7 +4,6 @@ import { loginUserService, signUpUserService } from "../services/auth.js";
 export const handleRegisterUser = async (req, res) => {
   try {
     const data = req.body;
-    data.to = data.email;
     const user = await signUpUserService(data);
     return res
       .status(200)
