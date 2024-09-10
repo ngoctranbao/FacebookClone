@@ -13,15 +13,8 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 
 const Sidebar = () => {
     return (
-        <Sider width={200}>
-            {/* <Row>Đoạn chat</Row> */}
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%' }}
-              items={items2}
-            />
+        <Sider style={{position: "fixed", width: "200px"}}>
+            <Row>Đoạn chat</Row>
           </Sider>
     )
 }

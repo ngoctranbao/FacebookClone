@@ -1,19 +1,21 @@
-import { Row, Layout, Col, Image } from "antd"
+import { Row, Layout, Col, Image, Avatar } from "antd"
 import React from "react"
 import Sidebar from "../../components/SideBar"
-import avatarDefault from "../../assets/453178253_471506465671661_2781666950760530985_n.png"
+import { Post } from "./post"
 
 const Home = () => {
     return (
-        <Row>
+        <Row style={{display: "flex", justifyContent: "space-between", backgroundColor: "rgb(241, 236, 236)"}}>
             <Col>
-                <img
-                src={avatarDefault}
-                preview={{
-                src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-                }}
-        />            
-        </Col>
+                <Sidebar/>
+            </Col>
+            <Col style={{display: "flex", flexDirection: "column"}}>
+                <Post/>
+                <Post/>
+            </Col>
+            <Col>
+                Quảng cáo
+            </Col>
         </Row>
     )
 }

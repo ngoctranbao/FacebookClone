@@ -9,31 +9,35 @@ const Dashboard = () => {
     return (
       <Row className='dash_bar'>
           <Col>
+              <Link to='/'>
             <FontAwesomeIcon icon={faFacebook} className='facebook-item'/>
+            </Link>
             <FontAwesomeIcon icon={faMagnifyingGlass}  className='dashbar-item'/>
           </Col>
           <Col>
+            <Link to='/'>
             <FontAwesomeIcon icon={faHouse}  className='navigate-item'/>
+            </Link>
+          <Link to='/friends'> 
             <FontAwesomeIcon icon={faUserGroup}  className='navigate-item'/>
+          </Link>
+          <Link to='/watch'>
             <FontAwesomeIcon icon={faDesktop}  className='navigate-item'/>
+          </Link>
+          <Link to='/*'>
             <FontAwesomeIcon icon={faStore}  className='navigate-item'/>
+          </Link>          
+          <Link to='/*'>
             <FontAwesomeIcon icon={faUsersLine}  className='navigate-item'/>
+          </Link>
           </Col>
           <Col>
             <FontAwesomeIcon icon={faGripVertical}  className='dashbar-item'/>
+          <Link to='/messages'>
             <FontAwesomeIcon icon={faFacebookMessenger}  className='dashbar-item'/>
+          </Link>
             <FontAwesomeIcon icon={faBell}  className='dashbar-item'/>
           </Col>
-          {/* <Link to='/'>
-          </Link>
-          <Link to='/friends'>
-          </Link>
-          <Link to='/watch'>
-          </Link>
-          <Link to='/*'>
-          </Link>
-          <Link to='/messages'>
-          </Link> */}
       </Row>
     )
 }

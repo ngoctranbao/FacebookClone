@@ -16,9 +16,10 @@ const LoginForm = () => {
   
         if (response.status === 200) {
           console.log('Login successful:', response.data);
-        } else {
-            console.log('Login failed:', response);
-          }
+        } 
+        if (response.status === 203) {
+            console.log('Login failed: Email or password wrong');
+        }
       } catch (error) {
         console.error('Login failed:', error.response.data);
       }

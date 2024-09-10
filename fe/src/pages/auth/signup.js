@@ -19,20 +19,18 @@ const SignUpForm = () => {
     };
 
     const onFinish = async(values) => {
-      console.log(`${values.password} + ${values.userName}`)
       try {
 
         const response = await signupService({userName: values.userName, password: values.password, email: values.email, avatar: "../../assets/453178253_471506465671661_2781666950760530985_n.png"})
   
         if (response.status === 200) {
-          console.log('Login successful:', response.data);
+          console.log('Sign up successful:', response.data);
         } else {
-            console.log('Login failed:', response);
+            console.log('Sign up failed:', response);
           }
       } catch (error) {
-        console.error('Login failed:', error.response.data);
+        console.error('Sign up failed:', error.response.data);
       }
-      setTimeout(50)
     }
 
   return (
