@@ -8,7 +8,7 @@ export const authenticateToken = async (req, res, next) => {
     const authHeader = String(req.headers["authorization"] || "");
     if (authHeader.startsWith("Bearer ")) {
       const token = authHeader.substring(7, authHeader.length);
-      let payloadToken = jwt.verify(token, process.env.JWT_SECRET);
+      let payloadToken = jwt.verify(token, process.env.JWT_TOKEN);
           let user = await db.User.findOne({
             where: { id: payloadToken.userId },
             attributes: {

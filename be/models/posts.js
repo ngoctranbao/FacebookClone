@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 export default (sequelize, DataTypes) => {
   class Post extends Model {
     static associate(models) {
-      Post.belongsTo(models.User);
+      Post.belongsTo(models.User, {foreignKey: userId});
       Post.belongsTo(models.Group);
       Post.hasMany(models.Comment);
       Post.hasMany(models.React);
@@ -26,6 +26,10 @@ export default (sequelize, DataTypes) => {
           type: DataTypes.INTEGER,
           allowNull: true
         },
+        userId: {
+          type: DataTypes.INTEGER,
+          allowNull: false
+        }
     },
     {
       sequelize,
