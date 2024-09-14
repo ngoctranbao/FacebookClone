@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import OverallLayout from './components/OverallLayout';
 import LoginForm from './pages/auth/loginform';
+import AuthProvider from './providers/authProviders';
 // require('dotenv').config();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App/> */}
-    {/* <OverallLayout/> */}
-    <LoginForm></LoginForm>
+    <AuthProvider>
+      <App/>
+    </AuthProvider>
   </React.StrictMode>
 );
 

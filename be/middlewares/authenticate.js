@@ -5,24 +5,24 @@ dotenv.config();
 
 export const authenticateToken = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
-    if (!token) {
-      return res.sendStatus(403);
-    }
-    let payloadToken = jwt.verify(token, process.env.JWT_SECRET);
-        let user = await db.User.findOne({
-          where: { id: payloadToken.userId },
-          attributes: {
-            exclude: ["password"],
-          },
-        });
-        if (user) {
-          user = user.get({ plain: true });
-          req.user = user;
-          next();
-        } else {
-          res.status(401).json({ message: "Failed to find user" });
-        }
+    const authHeader = String(req.headers["authorization"] || "");
+    if (authHeader.startsWith("Bearer ")) {
+      const token = authHeader.substring(7, authHeader.length);
+      let payloadToken = jwt.verify(token, process.env.JWT_SECRET);
+          let user = await db.User.findOne({
+            where: { id: payloadToken.userId },
+            attributes: {
+              exclude: ["password"],
+            },
+          });
+          if (user) {
+            user = user.get({ plain: true });
+            req.user = user;
+            next();
+          } else {
+            res.status(401).json({ message: "Failed to find user" });
+          }
+      }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

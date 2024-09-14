@@ -40,13 +40,19 @@ export const loginUserService = async (data) => {
     if (check) {
       const payload = { userId: user.id };
       const token = jwt.sign(payload, process.env.JWT_TOKEN);
-      console.log(token)
       return {
         message: "Login successful",
         data: { user: user },
         token: token
       };
+    } else {
+      return {
+        message: "Password wrong"
+      }
+    }
+  } else {
+    return {
+      message: "Not found user"
     }
   }
-  throw new Error("Email or password is incorrect");
 };

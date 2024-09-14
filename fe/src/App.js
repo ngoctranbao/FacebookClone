@@ -7,13 +7,17 @@ import React from 'react';
 import Friend from './pages/friends';
 import Messages from './pages/messages';
 import Watch from './pages/watch';
+import LoginForm from './pages/auth/loginform';
 
 
 
 function App() {
   return (
     <HashRouter>
+      <Dashboard/>
+      <div style={{marginTop: "20px"}}>
       <Routes>
+        <Route path='auth/login' element={<LoginForm/>}/>
         <Route path='/' element={<Home/>}/>
         <Route path='/friends' element={<Friend/>}/>
         <Route path='/watch' element={<Watch/>} />
@@ -25,6 +29,7 @@ function App() {
         <Route path='/reels' element={<div>Short video</div>}/>
         <Route path='/*' element={<div>Chua dinh nghia</div>}/>
       </Routes>
+      </div>
     </HashRouter>
   );
 }

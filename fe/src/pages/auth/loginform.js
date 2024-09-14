@@ -1,24 +1,29 @@
 import { AutoComplete, Avatar, Button, Col, Divider, Layout, Row } from "antd";
 import {  UserOutlined } from '@ant-design/icons'
+import { useNavigate } from "react-router-dom";
 import SignUpForm from "./signup";
 import React, {useState} from "react";
 import "./login.css"
 import { loginService } from "../../services/auth";
 
-
 const LoginForm = () => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
   
     const handleLogin = async () => {
       try {
         const response = await loginService({email: emailOrPhone, password: password})
-  
+        
         if (response.status === 200) {
-          console.log('Login successful:', response.data);
+          console.log('Login successful:', response);
+          localStorage.setItem("accessToken", JSON.stringify(response.token));
+          localStorage.setItem("authUser", JSON.stringify(response.data));
+          navigate("/");
         } 
         if (response.status === 203) {
-            console.log('Login failed: Email or password wrong');
+            console.log('Login failed:', response.message);
         }
       } catch (error) {
         console.error('Login failed:', error.response.data);

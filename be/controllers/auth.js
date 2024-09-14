@@ -18,10 +18,13 @@ export const handleLoginUser = async (req, res) => {
   try {
     console.log(req.body)
     const data = await loginUserService(req.body);
-    res.cookie("token", data.token, {
-      httpOnly: true,
-    });
-    return res.status(200).json(data);
+    if (data.message === "Login successful") {
+      res.cookie("token", data.token, {
+        httpOnly: true,
+      });
+      return res.status(200).json(data);
+    }
+    else return res.status(203).json({message: data.message})
   } catch (error) {
     console.log(error);
     return res
