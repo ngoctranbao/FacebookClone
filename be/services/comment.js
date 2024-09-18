@@ -6,7 +6,11 @@ export const getPostCommentService = async(data) => {
         var comments = await db.Comment.findAll({
             where: {
                 postId: data.postId
-            }
+            },
+            include: [{
+                model: db.User, as: 'user',
+                attributes: ['userName', 'avatar']
+            }]
         })
         return comments
     } catch (error) {

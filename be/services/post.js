@@ -1,19 +1,23 @@
+import { Model } from "sequelize";
 import db from "../models/index.js";
 
 export const getPostService = async () => {
   try {
     var res = await db.Post.findAll({
-        attributes: ['content', 'reactNumber', 'createdAt','userId'],
+        attributes: ['content', 'reactNumber', 'updatedAt','userId'],
+        include: [{
+          model: db.User, as: "user",
+          attributes: ['userName', 'avatar']
+        }]
     });
     return res;
   } catch (error) {
-    throw new Error("Get Post Service error");
+    throw new Error(`Get Post Service error: ${error}`);
   }
 };
 
 export const createPostService = async (data) => {
     try {
-      console.log(data)
         var newPost = await db.Post.create({
             content: data.content,
             reactNumber: 0,
@@ -21,6 +25,6 @@ export const createPostService = async (data) => {
         })
         return newPost;
     } catch (error) {
-        throw new Error("create a post error")
+        throw new Error(`create a post error ${error}`)
     }
 }

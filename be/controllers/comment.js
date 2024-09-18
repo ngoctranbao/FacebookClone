@@ -13,10 +13,10 @@ export const handleGetPostComment = async (req, res) => {
 export const handleCreatePostComment = async (req, res) => {
     try {
         const data = req.body;
-        const comment = await createPostService(data);
+        const comment = await createPostCommentService(data);
         return res
             .status(200)
-            .json({ message: "create message successfully", data: post})
+            .json({ message: "create message successfully", data: comment})
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: error.message })

@@ -10,7 +10,7 @@ export default function AuthProvider({ children }) {
     try {
       const res = await loginMe();
       if (res.status === 200) {
-        setAuthUser(res.data);
+        setAuthUser(res.data.user);
         localStorage.setItem("authUser", JSON.stringify(res.data));
       }
     } catch (error) {

@@ -3,16 +3,18 @@ import { hashUserPassword } from "../utils/hashPassword.js";
 export default (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasMany(models.Post);
+      User.hasMany(models.Post, {foreignKey: 'userId' });
       User.hasMany(models.Notify);
       User.belongsToMany(models.Group, { through: 'GroupMembers', foreignKey: 'userId' });
       User.hasMany(models.Group);
       User.belongsToMany(User, {
         through: 'Relationship',
+        as: 'Friends',
         foreignKey: 'userId',
         otherKey: 'friendId',
       });
-      User.belongsToMany(RoomChat, { through: 'UserRoomChats', foreignKey: 'userId' });
+      User.belongsToMany(models.RoomChat, { through: 'UserRoomChats', foreignKey: 'userId' });
+      User.hasMany(models.Comment, {foreignKey: "ownerId"})
     }
   }
   User.init(

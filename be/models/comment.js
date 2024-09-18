@@ -5,6 +5,7 @@ export default (sequelize, DataTypes) => {
         Comment.belongsTo(models.Post, { foreignKey: 'postId', as: 'post' });
         Comment.belongsTo(Comment, { foreignKey: 'parentId', as: 'parentComment' });
         Comment.hasMany(Comment, { foreignKey: 'parentId', as: 'replies' });
+        Comment.belongsTo(models.User, {foreignKey: "ownerId", as: "user"})
     }
   }
   Comment.init(

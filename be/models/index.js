@@ -25,7 +25,7 @@ if (config.use_env_variable) {
 }
 
 // Read all files in the current directory (except the current file and test files)
-fs
+const files = fs
   .readdirSync(__dirname)
   .filter(file => {
     return (
@@ -34,12 +34,14 @@ fs
       file.slice(-3) === '.js' &&
       file.indexOf('.test.js') === -1
     );
-  })
-  .forEach(async file => {
-    const modelPath = path.join(__dirname, file);
-    const model = (await import(pathToFileURL(modelPath).href)).default(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
   });
+
+// Use for...of loop with await to handle dynamic imports
+for (const file of files) {
+  const modelPath = path.join(__dirname, file);
+  const model = (await import(pathToFileURL(modelPath).href)).default(sequelize, Sequelize.DataTypes);
+  db[model.name] = model;
+}
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
@@ -49,5 +51,8 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// console.log('Associations:', db);
+console.log('Associations:', db.User); 
 
 export default db;

@@ -6,45 +6,31 @@ import { faThumbsUp, faComment, faShareFromSquare, faHeart } from "@fortawesome/
 import './post.css'
 
 
-export const Post = () => {
-    
-    const post = {
-        name: "Đài phát thanh",
-        avatar: avatarDefault,
-        createAt: "10 giờ",
-        descriptions: `NGỌT - EP. SUÝT 2
-        Đúng 00h00' khuya nay (30/8), Ngọt chính thức cho ra mắt EP. Suýt 2 như lời hẹn với fan trước đó. Tiếp nối EP. Suýt 1, Suýt 2 bao gồm 4 ca khúc:
-        06 Quen Lắm - với những giai điệu có phần quen thuộc, lấy cảm hứng từ ca khúc Giấc Mơ Có Thật từng được Lệ Quyên thể hiện rất thành công.
-        07 Chiều Hồ Tây - bản nhạc "hòa tấu" không lời duy nhất trong 2 EP 'Suýt 1' và 'Suýt 2'.
-        08 Leo Đèo - một ca khúc mang âm hưởng âm nhạc dân gian, Leo Đèo cũng từng được Thắng thể hiện với bản mộc guitar trước đó.
-        09 Chuyện Thường - ca khúc như phần tiếp theo của “Bạn Thỏ Tivi”, khi con người đã lớn, và phải dành chia tay cho cho “bạn dễ thương của tôi”.
-        EP. Suýt 2 - Ngọt đã chính thức ra mắt, xin mời cả nhà.`,
-        react: 2000,
-    }
+export const Post = ({value, key}) => {
     
     return (
-        <div style={{width: "500px"}} className="post-container">
+        <div className="post-container">
                 <Row className="post-infor" style={{margin: "4px"}}>
                     <Col>
-                        <Avatar src={post.avatar} size={48}/>
+                        <Avatar src={avatarDefault} size={48}/>
                     </Col>
                     <Col>
-                        <Row style={{fontWeight: "bolder"}}>{post.name}</Row>
-                        <Row style={{fontWeight: "lighter"}}>{post.createAt}</Row>
+                        <Row style={{fontWeight: "bolder"}}>{value?.user?.userName}</Row>
+                        <Row style={{fontWeight: "lighter"}}>{value?.updatedAt}</Row>
                     </Col>
                 </Row>
                 <Row className="description" style={{margin: "10px"}}>
-                    {post.descriptions}
+                    {value.content}
                 </Row>
                 <Row className="image">
                     <Image src={defaultImage}/>
                 </Row>
                 <Row>
-                    <FontAwesomeIcon icon={faHeart} /> 243
+                    <FontAwesomeIcon icon={faHeart} /> {value.reactNumber}
                 </Row>
                 <Divider/>
                 <Row className="reaction" style={{display: "flex", justifyContent: "space-around", alignContent: "center"}}>
-                    <FontAwesomeIcon icon={faThumbsUp} />
+                    <FontAwesomeIcon icon={faThumbsUp}/>
                     <FontAwesomeIcon icon={faComment} />
                     <FontAwesomeIcon icon={faShareFromSquare} />      
                 </Row>
