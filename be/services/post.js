@@ -4,7 +4,7 @@ import db from "../models/index.js";
 export const getPostService = async () => {
   try {
     var res = await db.Post.findAll({
-        attributes: ['content', 'reactNumber', 'updatedAt','userId'],
+        attributes: ['content', 'reactNumber', 'updatedAt','userId', 'id'],
         include: [{
           model: db.User, as: "user",
           attributes: ['userName', 'avatar']

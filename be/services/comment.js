@@ -3,9 +3,10 @@ import db from "../models/index.js"
 
 export const getPostCommentService = async(data) => {
     try {
+        console.log(data)
         var comments = await db.Comment.findAll({
             where: {
-                postId: data.postId
+                postId: data
             },
             include: [{
                 model: db.User, as: 'user',
@@ -15,7 +16,7 @@ export const getPostCommentService = async(data) => {
         return comments
     } catch (error) {
         console.log(error)
-        throw new Error("get comment of post error")
+        throw new Error(`get comment of post error ${error}`)
     }
 }
 

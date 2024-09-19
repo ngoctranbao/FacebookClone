@@ -12,31 +12,31 @@ export const NewPost = () => {
     const [content, setContent] = useState('')
 
     const handelOk = async (value) => {
-        console.log(value)
-        console.log(authUser)
-        setContent('')
-
-        const res = await createPostService({content: value, userId: authUser.id})
-        if (res.status === 200) {
-            console.log(`Create post success: ${res.data}`)
-        } else {
-            console.log(res)
+        if(value !== '' && authUser.id) {
+            const res = await createPostService({content: value, userId: authUser.id})
+            if (res.status === 200) {
+                console.log(`Create post success: ${res.data}`)
+            } else {
+                console.log(res)
+            }
         }
-
+        setContent('')
         setIsModalOpen(false)
     }
 
     return(
-        <Row style={{}}>
+        <Row style={{margin: "5px"}}>
             <Col>
                 <Avatar src={userAvatar}/>
             </Col>
-            <Col>
+            <Col span={22} style={{marginLeft: "4px"}}>
                 <Input placeholder="Hey dude, what are you thingking ?" onClick={() => {setIsModalOpen(true)}}/>
             </Col>
             <Modal
                 open={isModalOpen}
                 onOk={() => {handelOk(content)}}
+                onCancel={() => {setIsModalOpen(false)}}
+                onClose={() => {setIsModalOpen(false)}}
             >
                 <Row>
                     Tạo bài viết

@@ -1,23 +1,30 @@
-import { Row, Layout, Col, Image, Avatar } from "antd"
+import { Row, Layout, Col, Image, Avatar, Modal } from "antd"
 import React, { useEffect, useState, useContext } from "react"
 import { AuthContext } from "../../providers/authProviders"
 import Sidebar from "../../components/SideBar"
 import { Post } from "./post"
-import { NewPost } from "./newpost"
+import { NewPost } from "./createpost"
 import { getPostService } from "../../services/post"
+import { ModalPost } from "./modalpost"
+import { Comment } from "./comment"
 
 const Home = () => {
 
     const { authUser } = useContext(AuthContext)
     const [posts, setPosts] = useState([])
+    const [selectedPost, setSelectedPost] = useState(null);
 
     const fetchPost =  async() => {
-        const res = await getPostService()
-        if (res.status === 200) {
-            console.log(res.data)
-            setPosts(res.data)
-        } else {
-            console.log(res.status)
+        try {
+            const res = await getPostService()
+            if (res.status === 200) {
+                console.log(res.data)
+                setPosts(res.data)
+            } else {
+                console.log(res.status)
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -36,10 +43,13 @@ const Home = () => {
                 {
                     posts.map((post, index) => {
                         return (
-                            <Post value={post} key={index}/>
+                            <Post value={post} onCommentClick={() => {setSelectedPost(post)}}/>
                         )
                     })
-                }
+                } 
+                {selectedPost && 
+                    <ModalPost post={selectedPost} onClose={() => {setSelectedPost(null)}}/>
+                }          
             </Col>
             <Col>
                 Quảng cáo
