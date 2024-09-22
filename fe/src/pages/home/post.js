@@ -9,7 +9,7 @@ import { Comment } from "./comment"
 import { ModalPost } from "./modalpost"
 
 
-export const Post = ({value, onCommentClick}) => {
+export const Post = ({value, onCommentClick, comments}) => {
     
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -39,7 +39,13 @@ export const Post = ({value, onCommentClick}) => {
                         <FontAwesomeIcon icon={faComment} onClick={onCommentClick}/>
                         <FontAwesomeIcon icon={faShareFromSquare}/>      
                     </Row>
-
+                    {comments &&
+                    comments.map((comment, index) => {
+                        return(
+                            <Comment value={comment}/>
+                        )
+                    })
+                }
             </div>
     )
 }

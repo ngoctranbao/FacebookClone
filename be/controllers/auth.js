@@ -1,5 +1,4 @@
 import { loginUserService, signUpUserService } from "../services/auth.js";
-// const { signUpUserService } = require("../services/auth");
 
 export const handleRegisterUser = async (req, res) => {
   try {

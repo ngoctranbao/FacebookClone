@@ -1,5 +1,4 @@
 import db from "../models/index.js";
-// import { createVerify } from "./verify";
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 dotenv.config();

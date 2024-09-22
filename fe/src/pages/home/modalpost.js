@@ -58,14 +58,7 @@ export const ModalPost = ({ post, onClose }) => {
             open={true}
         >
             <div className="modal-content">   
-                <Post value={post} onCommentClick={() => {}}/>
-                {
-                    comments.map((comment, index) => {
-                        return(
-                            <Comment value={comment}/>
-                        )
-                    })
-                }
+                <Post value={post} onCommentClick={() => {}} comments={comments}/>
             </div>
         </Modal> 
     );
