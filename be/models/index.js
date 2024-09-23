@@ -36,8 +36,7 @@ const files = fs
     );
   });
 
-// Use for...of loop with await to handle dynamic imports
-for (const file of files) {
+  for (const file of files) {
   const modelPath = path.join(__dirname, file);
   const model = (await import(pathToFileURL(modelPath).href)).default(sequelize, Sequelize.DataTypes);
   db[model.name] = model;
@@ -51,8 +50,5 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-// console.log('Associations:', db);
-console.log('Associations:', db.User); 
 
 export default db;

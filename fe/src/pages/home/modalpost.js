@@ -1,9 +1,12 @@
-import { Modal } from "antd"
 import { Post } from "./post"
-import { Comment } from "./comment";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/authProviders";
 import { createCommentService, getPostCommentService } from "../../services/comment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import "./modal.css"
+import { Avatar, Button, Input, Row } from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 export const ModalPost = ({ post, onClose }) => {
 
@@ -46,20 +49,34 @@ export const ModalPost = ({ post, onClose }) => {
         fetchComment()
     },[post.id])
 
-
     return (
-        <Modal 
-            onClose={onClose}
-            onCancel={onClose}
-            footer={[
-                <input type="text" placeholder="Write a comment..." onChange={(e) => setNewComment(e.target.value)} value={newComment}/>,
-                <button onClick={() => {createComment(newComment)}}>Post Comment</button>
-            ]}
-            open={true}
-        >
-            <div className="modal-content">   
-                <Post value={post} onCommentClick={() => {}} comments={comments}/>
+        <div className="modal-overlay">
+            <div className="modal">
+                <div className="modal-header">
+                    <h2> Bài viết của {post.user.userName}</h2>
+                    <button onClick={onClose} className="close-button">
+                        &times;
+                    </button>
+                </div>
+                <div className="modal-body">
+                    <Post value={post} onCommentClick={() => {}} comments={comments}/>
+                </div>
+                <div className="modal-footer">
+                    <Avatar/>
+                    <div>
+                        
+                    </div>
+                    <Input 
+                        type="text" 
+                        placeholder={`Bình luận dưới tên ${authUser.userName}`}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        value={newComment}
+                        suffix={<FontAwesomeIcon icon={faPaperPlane} onClick={() => {createComment(newComment)}}/>}
+                    />
+                        {/* <Button onClick={() => {createComment(newComment)}}>Post Comment</Button> */}
+                </div>
             </div>
-        </Modal> 
+        </div>
     );
   };
+ 

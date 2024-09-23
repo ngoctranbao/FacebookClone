@@ -15,7 +15,7 @@ export const createServer = () => {
   const server = createHttpServer(app);
   global.io = new SocketIOServer(server, {
     cors: {
-      origin: "*",
+      origin: "http://localhost:3000",
       methods: ["GET", "POST"],
     },
   });
@@ -39,6 +39,9 @@ export const createServer = () => {
   app.use(bodyParser.urlencoded({ limit: "10mb" }));
 
   app.use("/api", router);
+
+  // io.on("connection", eventSocket);
+
 
   return server;
 };

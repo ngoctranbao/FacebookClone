@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoginForm from './pages/auth/loginform';
 import AuthProvider from './providers/authProviders';
+import { SocketProvider } from './providers/socketProviders';
 // require('dotenv').config();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <App/>
+      <SocketProvider>
+        <App/>
+      </SocketProvider>
     </AuthProvider>
   </React.StrictMode>
 );

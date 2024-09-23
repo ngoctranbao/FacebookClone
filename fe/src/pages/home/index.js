@@ -7,6 +7,7 @@ import { NewPost } from "./createpost"
 import { getPostService } from "../../services/post"
 import { ModalPost } from "./modalpost"
 import { Comment } from "./comment"
+import "./post.css"
 
 const Home = () => {
 
@@ -43,7 +44,9 @@ const Home = () => {
                 {
                     posts.map((post, index) => {
                         return (
-                            <Post value={post} onCommentClick={() => {setSelectedPost(post)}}/>
+                            <div className="post-container">
+                                <Post value={post} onCommentClick={() => {setSelectedPost(post)}}/>
+                            </div>
                         )
                     })
                 } 

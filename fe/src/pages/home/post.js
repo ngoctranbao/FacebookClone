@@ -11,10 +11,8 @@ import { ModalPost } from "./modalpost"
 
 export const Post = ({value, onCommentClick, comments}) => {
     
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
     return (
-            <div className="post-container">
+            <div>
                     <Row className="post-infor" style={{margin: "4px"}}>
                         <Col>
                             <Avatar src={avatarDefault} size={48}/>

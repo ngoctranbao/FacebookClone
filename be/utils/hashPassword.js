@@ -1,5 +1,3 @@
-// import pkg from 'bcryptjs';
-// const { hash, compare, genSalt } = pkg;
 import bcrypt from 'bcrypt';
 
 export const hashUserPassword = async (plaintextPassword) => {
