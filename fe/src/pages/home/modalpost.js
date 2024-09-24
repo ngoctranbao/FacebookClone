@@ -63,9 +63,6 @@ export const ModalPost = ({ post, onClose }) => {
                 </div>
                 <div className="modal-footer">
                     <Avatar/>
-                    <div>
-                        
-                    </div>
                     <Input 
                         type="text" 
                         placeholder={`Bình luận dưới tên ${authUser.userName}`}
@@ -73,7 +70,6 @@ export const ModalPost = ({ post, onClose }) => {
                         value={newComment}
                         suffix={<FontAwesomeIcon icon={faPaperPlane} onClick={() => {createComment(newComment)}}/>}
                     />
-                        {/* <Button onClick={() => {createComment(newComment)}}>Post Comment</Button> */}
                 </div>
             </div>
         </div>

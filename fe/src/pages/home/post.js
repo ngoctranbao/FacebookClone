@@ -26,7 +26,7 @@ export const Post = ({value, onCommentClick, comments}) => {
                         {value.content}
                     </Row>
                     <Row className="image">
-                        <Image src={defaultImage}/>
+                        <Image src={defaultImage} preview={false}/>
                     </Row>
                     <Row>
                         <FontAwesomeIcon icon={faHeart} /> {value.reactNumber}

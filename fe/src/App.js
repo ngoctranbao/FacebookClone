@@ -1,6 +1,5 @@
 import './App.css';
 import Dashboard from './components/DashBar'
-import Sidebar from './components/SideBar'
 import Home from './pages/home'
 import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import React from 'react';
