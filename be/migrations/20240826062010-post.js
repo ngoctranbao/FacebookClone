@@ -17,10 +17,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      reactNumber: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: true,

@@ -5,7 +5,6 @@ export default (sequelize, DataTypes) => {
       Post.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
       Post.belongsTo(models.Group);
       Post.hasMany(models.Comment);
-      Post.hasMany(models.React);
     }
   }
   Post.init(
@@ -17,10 +16,6 @@ export default (sequelize, DataTypes) => {
         fileUrl: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        reactNumber: {
-          type: DataTypes.INTEGER,
-          allowNull: false
         },
         groupId: {
           type: DataTypes.INTEGER,

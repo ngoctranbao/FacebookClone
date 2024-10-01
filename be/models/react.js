@@ -2,27 +2,21 @@ import { Model } from "sequelize";
 export default (sequelize, DataTypes) => {
   class React extends Model {
     static associate(models) {
-        React.belongsTo(models.Post, {foreignKey: 'postId', as: 'post'}),
-        React.belongsTo(models.Comment, { foreignKey: 'commentId', as: 'comment' });
     }
   }
   React.init(
     {
         ownerId: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         typeOf: {
             type: DataTypes.STRING(4),
             allowNull: false
         },
-        postId: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
-        commentId: {
-            type: DataTypes.INTEGER,
-            allowNull: true
+        parentId: {
+          type: DataTypes.INTEGER,
+          allowNull: false
         }
     },
     {
