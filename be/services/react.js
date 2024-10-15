@@ -33,6 +33,7 @@ export const addReactService = async (data) => {
 export const deleteReactService = async (data) => {
     const t = await db.sequelize.transaction();
     try {
+        console.log(data)
         const existRecord = await db.React.findOne({
             where: {
                 ownerId: data.ownerId,
@@ -43,9 +44,11 @@ export const deleteReactService = async (data) => {
         if(existRecord) {
             await existRecord.destroy({transaction :t});
         }
+        await t.commit()
     return true
     } catch (error) {
-        
+        t.rollback()
+        throw new Error(`delete react error ${error}`)
     }
 }
 

@@ -12,8 +12,8 @@ export const handleCreateReact = async(req, res) => {
 
 export const handleDeleteReact = async(req, res) => {
     try {
-        const data = await deleteReactService(req.body)
-        return res.status(200).json({data: data, message: "success delete the react"})
+        const result = await deleteReactService(req.body)
+        return res.status(200).json({data: result, message: "success delete the react"})
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: error.message });

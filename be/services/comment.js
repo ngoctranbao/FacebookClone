@@ -3,7 +3,6 @@ import db from "../models/index.js"
 
 export const getPostCommentService = async(data) => {
     try {
-        console.log(data)
         var comments = await db.Comment.findAll({
             where: {
                 postId: data
@@ -33,3 +32,5 @@ export const createPostCommentService = async(data) => {
         throw new Error("create comment of post error")
     }
 }
+
+// export const getReplyCommentServvice = async(data)

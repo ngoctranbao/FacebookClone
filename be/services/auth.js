@@ -17,7 +17,6 @@ export const signUpUserService = async (data) => {
     res = res.get({ plain: true });
     if (res) {
       delete res["password"];
-      // await createVerify({ type: "1", data: res });
     }
     return res;
   } catch (error) {

@@ -1,6 +1,4 @@
-// createServer.mjs
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors";
 import { router } from "../routes/index.js"; // Adjust the path as needed
 import { createServer as createHttpServer } from "http";
@@ -35,8 +33,8 @@ export const createServer = () => {
     next();
   });
 
-  app.use(bodyParser.json({ limit: "10mb" }));
-  app.use(bodyParser.urlencoded({ limit: "10mb" }));
+  app.use(express.json({ limit: "10mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
   app.use("/api", router);
 

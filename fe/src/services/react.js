@@ -5,7 +5,7 @@ export const createReact = (data) => {
 }
 
 export const deleteReact = (data) => {
-    return axios.delete("/api/react/delete", data)
+    return axios.delete("/api/react/delete", { data })
 }
 
 export const getReact = (data) => {

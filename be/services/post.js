@@ -1,14 +1,16 @@
-import { Model } from "sequelize";
 import db from "../models/index.js";
 
 export const getPostService = async () => {
   try {
     var res = await db.Post.findAll({
-        attributes: ['content', 'reactNumber', 'updatedAt','userId', 'id'],
+        // attributes: ['content', 'updatedAt','userId', 'id'],
         include: [{
           model: db.User, as: "user",
           attributes: ['userName', 'avatar']
-        }]
+        }],
+        order: [
+          ['updatedAt', 'DESC']
+        ]
     });
     return res;
   } catch (error) {
@@ -20,8 +22,8 @@ export const createPostService = async (data) => {
     try {
         var newPost = await db.Post.create({
             content: data.content,
-            reactNumber: 0,
-            userId: data.userId
+            userId: data.userId,
+            fileUrl: data?.fileUrl
         })
         return newPost;
     } catch (error) {
