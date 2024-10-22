@@ -2,18 +2,17 @@ import { Model } from "sequelize";
 export default (sequelize, DataTypes) => {
   class RoomChat extends Model {
     static associate(models) {
-      RoomChat.hasMany(models.Message);
+      RoomChat.hasMany(models.Message, {as: "messages"});
       RoomChat.belongsToMany(models.User, { through: 'UserRoomChats', foreignKey: 'roomId' });
     }
   }
   RoomChat.init(
     {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
+        lastMessage: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            unique: false,
           },
-        
     },
     {
       sequelize,

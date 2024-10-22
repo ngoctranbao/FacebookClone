@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 export default (sequelize, DataTypes) => {
   class Message extends Model {
     static associate(models) {
-        Message.belongsTo(models.RoomChat);
+        Message.belongsTo(models.RoomChat, {foreignKey: 'roomChatId'});
     }
   }
   Message.init(
@@ -15,6 +15,10 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        roomChatId: {
+          type: DataTypes.INTEGER,
+          allowNull: false
+        }
     },
     {
       sequelize,

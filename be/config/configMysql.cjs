@@ -9,7 +9,7 @@ const sequelize = new Sequelize('facebook', 'root', DB_PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
   port: 3306,
-  logging: true
+  logging: false
 });
 
 let connectMysql = async () => {

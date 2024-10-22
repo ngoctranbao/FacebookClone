@@ -2,7 +2,6 @@ import { createPostCommentService, getPostCommentService } from "../services/com
 
 export const handleGetPostComment = async (req, res) => {
     try {
-        console.log(req.query)
         const data = await getPostCommentService(req.query.id)
         return res.status(200).json({ data: data, message: "get comment success" })
       } catch (error) {
