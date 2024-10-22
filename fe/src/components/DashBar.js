@@ -4,8 +4,13 @@ import { faBell, faDesktop, faHouse, faMagnifyingGlass, faUserGroup,faStore, faU
 import { faFacebook, faFacebookMessenger } from'@fortawesome/free-brands-svg-icons';
 import './DashBar.css'
 import { Row, Col } from 'antd';
+import { SocketContext } from '../providers/socketProviders';
+import { useContext } from 'react';
+
 
 const Dashboard = () => {
+    const { roomChats } = useContext(SocketContext);
+
     return (
       <Row className='dash_bar'>
           <Col>
@@ -33,9 +38,16 @@ const Dashboard = () => {
           </Col>
           <Col>
             <FontAwesomeIcon icon={faGripVertical}  className='dashbar-item'/>
-          <Link to='/messages'>
-            <FontAwesomeIcon icon={faFacebookMessenger}  className='dashbar-item'/>
-          </Link>
+            { roomChats && roomChats.length > 0 
+              ? (
+                  <Link to={`/messages/${roomChats[0].id}`}>
+                    <FontAwesomeIcon icon={faFacebookMessenger} className='dashbar-item' />
+                  </Link>
+                )
+              : (
+                  <FontAwesomeIcon icon={faFacebookMessenger} className='dashbar-item' />
+                )
+            }
             <FontAwesomeIcon icon={faBell}  className='dashbar-item'/>
           </Col>
       </Row>

@@ -8,8 +8,6 @@ import Watch from './pages/watch';
 import LoginForm from './pages/auth/loginform';
 import RoomChat from './pages/roomchat';
 
-
-
 function App() {
   return (
     <HashRouter>
@@ -20,7 +18,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/friends' element={<Friend/>}/>
         <Route path='/watch' element={<Watch/>} />
-        <Route path='/messages' element={<RoomChat/>}/>
+        <Route path='/messages/:id' element={<RoomChat/>}/>
         <Route path='/search' element={<div>Search</div>}/>
         <Route path='/group' element={<div>Group</div>}/>
         <Route path='/stories' element={<div>Stories</div>}/>

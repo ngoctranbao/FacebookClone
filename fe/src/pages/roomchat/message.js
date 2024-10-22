@@ -34,7 +34,7 @@ const Message = ({
 
       <Col style={{ paddingLeft: 12 }}>
         <Tooltip title={"Time"} placement="left" arrow={false}>
-          {message?.messageFiles.length > 0 && (
+          {/* {message?.messageFiles?.length > 0 && (
             <Row
               style={{
                 justifyContent: `${
@@ -45,7 +45,7 @@ const Message = ({
               }}
               gutter={[3, 3]}
             >
-              {/* {message.messageFiles.map((image, index) => {
+              {message.messageFiles.map((image, index) => {
                 return (
                   <ImageCustom
                     src={process.env.REACT_APP_HOST_BE + "/" + image.url}
@@ -53,9 +53,9 @@ const Message = ({
                     className="message-image"
                   />
                 );
-              })} */}
+              })}
             </Row>
-          )}
+          )} */}
           <Row
             style={{
               justifyContent: `${

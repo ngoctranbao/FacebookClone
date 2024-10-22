@@ -18,26 +18,14 @@ import {
 } from "../../services/roomchat";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/authProviders";
-import { uploadImageFile } from "../../services/file";
 
 const { Footer, Content } = Layout;
 const { TextArea } = Input;
 
-const roomChats = [
-  {name: "Room chat 1", id: 1, lastMessage: "Room chat 8"},
-  {name: "Room chat 2", id: 2, lastMessage: "Room chat 7"},
-  {name: "Room chat 3", id: 3, lastMessage: "Room chat 6"},
-  {name: "Room chat 4", id: 4, lastMessage: "Room chat 5"},
-  {name: "Room chat 5", id: 5, lastMessage: "Room chat 4"},
-  {name: "Room chat 6", id: 6, lastMessage: "Room chat 3"},
-  {name: "Room chat 7", id: 7, lastMessage: "Room chat 2"},
-  {name: "Room chat 8", id: 8, lastMessage: "Room chat 1"},  
-]
-
 const RoomChat = () => {
   const { authUser } = useContext(AuthContext);
   const { id } = useParams();
-  // const { socket, roomChats, getRoomChatForMe } = useContext(SocketContext);
+  const { socket, roomChats, getRoomChatForMe } = useContext(SocketContext);
   const [roomChat, setRoomChat] = useState();
   const [messages, setMessages] = useState([]);
   const [files, setFiles] = useState([]);
@@ -47,14 +35,14 @@ const RoomChat = () => {
 
   const fetchMessageOfRoom = async (roomChatId) => {
     try {
-      // const res = await getMessagesOfRoomChatService(roomChatId);
-      // if (res.status === 200) {
-      //   setMessages(res.data);
-      // }
-      // setTimeout(() => {
-      //   chatWindowRef.current.scrollTo(0, chatWindowRef.current.scrollHeight);
-      // }, 50);
-      setMessages([])
+      const res = await getMessagesOfRoomChatService(roomChatId);
+      if (res.status === 200) {
+        console.log(res.data)
+        setMessages(res.data);
+      }
+      setTimeout(() => {
+        chatWindowRef.current.scrollTo(0, chatWindowRef.current.scrollHeight);
+      }, 50);
     } catch (error) {
       console.log(error);
     }
@@ -111,48 +99,15 @@ const RoomChat = () => {
     }
   }, [id]);
 
+
   const switchRoomChat = (chatId) => {
-    navigate(`/room-chat/${chatId}`);
+    navigate(`/messages/${chatId}`);
   };
 
-  const uploadMultipleFiles = async (e) => {
-    const listFile = Array.from(e.target.files);
-    if (listFile.length > 5) {
-      e.preventDefault();
-      alert(`Cannot upload files more than 5`);
-      return;
-    } else if (listFile.length > 0) {
-      const formData = new FormData();
-
-      for (let i = 0; i < listFile.length; i++) {
-        formData.append("file", listFile[i]);
-      }
-      var fileBuilt = listFile.map((file) => {
-        return {
-          name: file.name,
-          key: file.name + "*" + file.size,
-          url: window.URL.createObjectURL(file),
-        };
-      });
-
-      setFiles(fileBuilt);
-
-      try {
-        const res = await uploadImageFile(formData);
-        if (res.statusCode === 200) {
-          console.log(res.message);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      setFiles([]);
-    }
-  };
 
   const sendMessage = async (data) => {
     try {
-      if ((data.content && data.content.length > 0) || files.length > 0) {
+      if ((data?.content && data?.content?.length > 0) || data?.files?.length > 0) {
         const res = await sendMessageToRoomService(data);
         if (res.status === 200) {
           setContent("");
@@ -231,7 +186,6 @@ const RoomChat = () => {
                       type="file"
                       id="input-image-message"
                       multiple
-                      onChange={uploadMultipleFiles}
                       accept="image/*"
                     />
                   </Row>

@@ -1,19 +1,5 @@
 import db from "../models/index.js";
 
-export const getRoomChatService = async (id) => {
-  const roomChat = await db.RoomChat.findOne({
-    where: { id: id },
-    include: [
-      { model: db.Message, as: "messages" },
-    ],
-  });
-  if (roomChat) {
-    return roomChat;
-  } else {
-    throw new Error("Couldn't find room chat for " + id);
-  }
-};
-
 export const createRoomChatService = async(data) => {
     try {
       const newRoomChat = await db.RoomChat.create({});
@@ -44,10 +30,6 @@ export const getRoomChatForMeService = async (userId) => {
           through: { attributes: [] },
           required: true, 
           attributes: [],
-        },
-        {
-          model: db.Message,
-          as: "messages", 
         },
       ],
       order: [["createdAt", "DESC"]],
