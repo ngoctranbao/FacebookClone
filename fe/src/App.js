@@ -4,9 +4,9 @@ import Home from './pages/home'
 import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Friend from './pages/friends';
-import Messages from './pages/messages';
 import Watch from './pages/watch';
 import LoginForm from './pages/auth/loginform';
+import RoomChat from './pages/roomchat';
 
 
 
@@ -20,7 +20,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/friends' element={<Friend/>}/>
         <Route path='/watch' element={<Watch/>} />
-        <Route path='/messages' element={<Messages/>}/>
+        <Route path='/messages' element={<RoomChat/>}/>
         <Route path='/search' element={<div>Search</div>}/>
         <Route path='/group' element={<div>Group</div>}/>
         <Route path='/stories' element={<div>Stories</div>}/>

@@ -4,22 +4,23 @@ import { AuthContext } from "../../providers/authProviders"
 import Sidebar from "../../components/SideBar"
 import { Post } from "./post"
 import { NewPost } from "./createpost"
-import { getPostService } from "../../services/post"
+import { createPostService, getPostService } from "../../services/post"
 import { ModalPost } from "./modalpost"
 import { Comment } from "./comment"
 import "./post.css"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
 
     const { authUser } = useContext(AuthContext)
     const [posts, setPosts] = useState([])
     const [selectedPost, setSelectedPost] = useState(null);
+    const navigate = useNavigate();
 
     const fetchPost =  async() => {
         try {
             const res = await getPostService()
             if (res.status === 200) {
-                console.log(res.data)
                 setPosts(res.data)
             } else {
                 console.log(res.status)

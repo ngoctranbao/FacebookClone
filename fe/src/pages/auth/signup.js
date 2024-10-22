@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, Col, Modal, Row, Divider,DatePicker, Radio, Avatar } from 'antd';
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { signupService } from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,15 +22,16 @@ const SignUpForm = () => {
     const onFinish = async(values) => {
       try {
 
-        const response = await signupService({userName: values.userName, password: values.password, email: values.email, avatar: "../../assets/453178253_471506465671661_2781666950760530985_n.png"})
+        const response = await signupService({userName: values.userName, password: values.password, email: values.email})
   
-        if (response.status === 200) {
+        if (response.status === 200) {          
           console.log('Sign up successful:', response.data);
+          setIsModalOpen(false)
         } else {
             console.log('Sign up failed:', response);
           }
       } catch (error) {
-        console.error('Sign up failed:', error.response.data);
+        console.error('Sign up failed:', error.message);
       }
     }
 

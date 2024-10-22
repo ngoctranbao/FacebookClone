@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { uploadFile } from "../../services/file";
+import { uploadImageFile } from "../../services/file";
 
 const Watch = () => {
     // return (
@@ -14,12 +14,8 @@ const Watch = () => {
   
     const handleUpload = async () => {
       if (!file) return;
-  
-      const formData = new FormData();
-      formData.append('image', file);
-  
       try {
-        const response = await uploadFile(formData)
+        const response = await uploadImageFile(file)
         
         console.log(response);
       } catch (error) {

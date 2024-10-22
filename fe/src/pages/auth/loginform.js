@@ -2,7 +2,8 @@ import { AutoComplete, Avatar, Button, Col, Divider, Layout, Row } from "antd";
 import {  UserOutlined } from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
 import SignUpForm from "./signup";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import { AuthContext } from "../../providers/authProviders";
 import "./login.css"
 import { loginService } from "../../services/auth";
 
@@ -11,6 +12,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    const { setAuthUser } = useContext(AuthContext)
   
     const handleLogin = async () => {
       try {
@@ -19,7 +21,8 @@ const LoginForm = () => {
         if (response.status === 200) {
           console.log('Login successful:', response);
           localStorage.setItem("accessToken", JSON.stringify(response.token));
-          localStorage.setItem("authUser", JSON.stringify(response.data));
+          localStorage.setItem("authUser", JSON.stringify(response.data.user));
+          setAuthUser(response.data.user)
           navigate("/");
         } 
         if (response.status === 203) {

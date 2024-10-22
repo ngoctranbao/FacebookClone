@@ -5,6 +5,5 @@ export const createCommentService = (data) => {
 }
 
 export const getPostCommentService = (data) => {
-    console.log(data)
     return axios.get(`/api/comment/getPostComment?id=${data}`)
 }
