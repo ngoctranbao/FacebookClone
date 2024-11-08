@@ -13,7 +13,7 @@ import { AuthContext } from "../../providers/authProviders"
 
 export const Post = ({value, onCommentClick, comments}) => {
 
-    const { authUser } = useContext(AuthContext)
+    const { authUser, formatTime} = useContext(AuthContext)
 
     const [postReact, setPostReact] = useState(0);
     const [isReact, setIsReact] = useState(false);
@@ -62,7 +62,7 @@ export const Post = ({value, onCommentClick, comments}) => {
                         </Col>
                         <Col>
                             <Row style={{fontWeight: "bolder"}}>{value?.user?.userName}</Row>
-                            <Row style={{fontWeight: "lighter"}}>{value?.updatedAt}</Row>
+                            <Row style={{fontWeight: "lighter"}}>{formatTime(value?.updatedAt)}</Row>
                         </Col>
                     </Row>
                     <Row className="description" style={{margin: "10px"}}>

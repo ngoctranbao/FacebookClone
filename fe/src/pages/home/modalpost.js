@@ -30,7 +30,6 @@ export const ModalPost = ({ post, onClose }) => {
 
     const createComment = async(value) => {
         try {
-            console.log(`value: ${value} and auth user: ${authUser?.id}`)
             if(authUser.id && value) {
                 const res = await createCommentService({content: value, ownerId: authUser.id, postId: post.id})
                 if(res.status === 200) {
