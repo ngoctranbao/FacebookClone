@@ -1,25 +1,28 @@
 import { Row, Col, Avatar, Tooltip } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../providers/authProviders";
 import "./message.css";
 
 const Message = ({
-  message = { content: "message", isOwner: true },
+  message = { content: "message", senderId: 1 },
   key = "chat1",
 }) => {
   const { authUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log(message)
+  }, [])
 
   return (
     <Row
       className="msg"
       style={{
         flexDirection: `${
-          message.userId === authUser.id ? "row-reverse" : "row"
+          message?.senderId === authUser?.id ? "row-reverse" : "row"
         }`,
       }}
       key={key}
     >
-      {message.userId !== authUser.id && (
         <Col>
           <Avatar
             style={{
@@ -30,10 +33,8 @@ const Message = ({
             U
           </Avatar>
         </Col>
-      )}
-
       <Col style={{ paddingLeft: 12 }}>
-        <Tooltip title={"Time"} placement="left" arrow={false}>
+        {/* <Tooltip title={"Time"} placement="left" arrow={false}> */}
           {/* {message?.messageFiles?.length > 0 && (
             <Row
               style={{
@@ -59,21 +60,12 @@ const Message = ({
           <Row
             style={{
               justifyContent: `${
-                message.userId === authUser.id ? "end" : "start"
+                message.senderId === authUser.id ? "end" : "start"
               }`,
             }}
           >
-            {message.content && (
-              <Col
-                className={`${
-                  message.userId === authUser.id ? "msg-owner" : "msg-partner"
-                }`}
-              >
-                {message.content}
-              </Col>
-            )}
+            {message?.content}
           </Row>
-        </Tooltip>
       </Col>
     </Row>
   );

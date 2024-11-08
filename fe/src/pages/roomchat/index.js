@@ -122,9 +122,11 @@ const RoomChat = () => {
   };
 
   return (
-    <Layout className="room-chat">
-      <ChatList chatList={roomChats} switchRoomChat={switchRoomChat} />
-      <Layout className="content-room-chat">
+    <Row className="room-chat">
+      <Col span={6} className="chat-list">
+        <ChatList chatList={roomChats} switchRoomChat={switchRoomChat} />      
+      </Col>
+      <Col span={12} className="content-room-chat">
         <Row className="msg-header">
           <Col className="text-bold-18 ">
             <Row>
@@ -161,7 +163,7 @@ const RoomChat = () => {
         </Content>
         <Footer className="input-message">
           <Col span={24}>
-            {files.length > 0 && (
+            {/* {files.length > 0 && (
               <Row style={{ paddingBottom: 10, gap: 5 }}>
                 {files.map((file, index) => {
                   return (
@@ -174,7 +176,7 @@ const RoomChat = () => {
                   );
                 })}
               </Row>
-            )}
+            )} */}
             
               <Row className="wrap-input-message">
                 <Col span={1}>
@@ -220,8 +222,11 @@ const RoomChat = () => {
               </Row>
           </Col>
         </Footer>
-      </Layout>
-    </Layout>
+      </Col>
+      <Col span={6} className="chat-infor">
+        Something else
+      </Col>
+    </Row>
   );
 };
 

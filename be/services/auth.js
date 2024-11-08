@@ -7,7 +7,6 @@ import { hashUserPassword, verifyPassword } from "../utils/hashPassword.js";
 export const signUpUserService = async (data) => {
   try {
     let hashPassword = await hashUserPassword(data.password)
-    console.log(hashPassword)
     var res = await db.User.create({
       userName: data.userName,
       password: hashPassword,

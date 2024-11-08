@@ -10,7 +10,7 @@ const ChatList = ({ chatList = [], switchRoomChat = () => {} }) => {
   const { id } = useParams();
 
   return (
-    <Sider className="chat-list" width={360}>
+    <Sider className="chat-list">
       <Row className="title-sidebar">Đoạn chat</Row>
       <Row>
         <Col span={24}>

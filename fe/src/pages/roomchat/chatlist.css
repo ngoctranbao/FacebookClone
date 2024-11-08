@@ -6,6 +6,10 @@
 
 }
 
+.chat-list {
+  width: 250px;
+}
+
 .item-chat-info {
   padding-left: 8px;
 }
